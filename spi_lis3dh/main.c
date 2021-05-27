@@ -1,4 +1,5 @@
 
+
 #include <stdbool.h>
 #include <stdint.h>
 #include "nrf_delay.h"
@@ -69,7 +70,7 @@ int main(void)
 		intValueMgZ = intValueMgZ * SENS_2G_RANGE_MG_PER_DIGIT ;
                 //
 		NRF_LOG_INFO("No=%6d X=%6d Y=%6d Z=%6d \r\n",i, intValueMgX, intValueMgY, intValueMgZ);
-		//nrf_delay_ms(300);
+		nrf_delay_ms(300);
                 i++;
 		nrf_gpio_pin_toggle(LED_1);
       }
