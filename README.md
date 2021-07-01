@@ -1,10 +1,11 @@
 # nrf
 
 ### BLE_SPI
-- #### UART + BLE + FDS ( in development)
+- #### UART + BLE + FDS 
   - can capture 2043 data points and write them to flash and transfer to BLE
   - uses FDS library , UART , and SPI together
   - need to include timer() events to control the flow
+  - debugging to increase the flash storage size and use timers
 
 - #### UART
   - can send sensor data through BLE using BLE UART example
