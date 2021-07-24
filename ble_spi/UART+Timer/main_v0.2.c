@@ -76,7 +76,17 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define MS_TICKS                        2.5                                         /**< MS duration for app timer. */
+/**
+MS_Ticks = 2.5 for 400 Hz
+= 0.744 for 1.344 kHz
+= 0.2 for 5 kHz
+= 0.625 for 1.6 kHz
+
+**/
+//TODO Change tick time
+#define MS_TICKS                        0.2                                         /**< MS duration for app timer. */
+
+
 
 
 
@@ -180,7 +190,7 @@ static void data_send(void)
             memset(data_store, 0, sizeof(data_store));
             pages++;
 
-            if(pages==5){
+            if(pages==9){
                ready_to_read = false;
                pages = 1;
             }
@@ -666,7 +676,8 @@ static ret_code_t fds_test_init (void)
 
    
     // if page = 5, stop the timer. wait for write operation to finish. enable read
-     if (pages==5)
+    //TODO change page no. Page no = total virtual page -2
+     if (pages==9)
      {
       err_code = app_timer_stop(m_repeated_timer_id);
       APP_ERROR_CHECK(err_code);
@@ -699,9 +710,9 @@ static ret_code_t fds_test_init (void)
 
          
 
-         if( j == 2043)  // stop the timer
+         if( j == 2043) 
          {     
-              printf("data_read full/r/n");
+              //printf("data_read full/r/n");
               // Copy data_read values to data_store 
                memcpy(data_store, data_read, sizeof(data_store));
 
@@ -1356,8 +1367,10 @@ int main(void)
 
     uint32_t       err_code;
     // Data capture variables
-     int32_t intValueMgZ;
+ 
      int i = 0;
+
+     pages = 1;
      
 //-------------------------------------------------------------------------------------------------------------------
     // Initialize.
